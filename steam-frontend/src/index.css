@@ -1,0 +1,69 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ==========================================
+   CUSTOM SCROLLBAR (Cyberpunk Theme)
+   ========================================== */
+
+/* 1. Set the width of the scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px; /* For horizontal scrollbars */
+}
+
+/* 2. Style the track (the background) */
+::-webkit-scrollbar-track {
+  background: #030712; /* Tailwind gray-950 to blend in perfectly */
+  border-left: 1px solid #1f2937; /* Optional: tiny border to separate it from content */
+}
+
+/* 3. Style the thumb (the part you drag) */
+::-webkit-scrollbar-thumb {
+  background: #374151; /* Tailwind gray-700 */
+  border-radius: 10px; /* Makes it pill-shaped */
+}
+
+/* 4. Hover effect when the user grabs the scrollbar */
+::-webkit-scrollbar-thumb:hover {
+  background: #00f3ff; /* Your signature Neon Cyan! */
+  box-shadow: 0 0 10px #00f3ff;
+}
+
+
+/* ==========================================
+   CUSTOM NUMBER INPUTS (Hide ugly arrows)
+   ========================================== */
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+
+
+/* ==========================================
+   AUTOFILL OVERRIDE (Fix white backgrounds)
+   ========================================== */
+
+/* Target the autofill state for WebKit browsers */
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus, 
+input:-webkit-autofill:active {
+  /* Use an inset box-shadow to cover the white background with Tailwind's gray-950 (#030712) */
+  -webkit-box-shadow: 0 0 0px 1000px #030712 inset !important;
+  
+  /* Force the text color back to white */
+  -webkit-text-fill-color: white !important;
+  
+  /* Prevent any borders from being overwritten */
+  background-clip: content-box !important;
+}

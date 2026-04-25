@@ -36,16 +36,13 @@ const app = express();
 // 2. GLOBAL MIDDLEWARES (Security & Logging)
 // ==========================================
 
-// 1. MUST BE FIRST: Enable CORS
+// MUST BE FIRST: Enable CORS
 app.use(cors({
   origin: true,
   credentials: true,
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With', 'Accept'],
 }));
-
-// Explicitly handle OPTIONS preflight requests
-app.options('(.*)', cors());
 
 // Health check route to verify the backend is alive
 app.get('/health', (req, res) => res.status(200).send('OK'));

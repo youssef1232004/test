@@ -44,6 +44,12 @@ app.use(cors({
   allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With', 'Accept'],
 }));
 
+// Explicitly handle OPTIONS preflight requests
+app.options('*', cors());
+
+// Health check route to verify the backend is alive
+app.get('/health', (req, res) => res.status(200).send('OK'));
+
 // 2. Security Headers (Configured to not block CORS)
 app.use(helmet({
     crossOriginResourcePolicy: false,

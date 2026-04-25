@@ -32,6 +32,9 @@ process.on('uncaughtException', err => {
 
 const app = express();
 
+// Trust Railway's proxy (Required for rate limiting to work behind a proxy)
+app.set('trust proxy', 1);
+
 // ==========================================
 // 2. GLOBAL MIDDLEWARES (Security & Logging)
 // ==========================================

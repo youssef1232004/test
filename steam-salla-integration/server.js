@@ -35,25 +35,25 @@ const app = express();
 // ==========================================
 // 2. GLOBAL MIDDLEWARES (Security & Logging)
 // ==========================================
-// Set Security HTTP Headers
+
+// 1. MUST BE FIRST: Enable CORS
+app.use(cors({
+  origin: true,
+  credentials: true,
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With', 'Accept'],
+}));
+
+// 2. Security Headers (Configured to not block CORS)
 app.use(helmet({
     crossOriginResourcePolicy: false,
+    crossOriginEmbedderPolicy: false,
 }));
 
 // Development Logging
 if (process.env.NODE_ENV === 'development') {
-    app.use(morgan('dev')); // Prints beautiful colored logs to your terminal
+    app.use(morgan('dev'));
 }
-
-// Enable CORS
-app.use(
-  cors({
-    origin: true, // Allows all origins. For better security, you can replace 'true' with your frontend URL later.
-    credentials: true,
-    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-    allowedHeaders: ['Content-Type', 'Authorization']
-  }),
-);
 
 // Body parser (reading data from body into req.body)
 app.use(express.json({ limit: '10kb' })); // Prevents hackers from sending massive payloads

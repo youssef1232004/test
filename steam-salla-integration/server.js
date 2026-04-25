@@ -45,7 +45,7 @@ app.use(cors({
 }));
 
 // Explicitly handle OPTIONS preflight requests
-app.options('*', cors());
+app.options('(.*)', cors());
 
 // Health check route to verify the backend is alive
 app.get('/health', (req, res) => res.status(200).send('OK'));
